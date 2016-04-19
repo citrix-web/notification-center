@@ -11,7 +11,7 @@ export default class NotificationDropdown extends Component {
                 <ul>
                     <li className="positive">
                         <div className="header">
-                            <p className="notification-time">03:00 PM</p>
+                            <p className="notification-time">03:12 PM</p>
                             <p className="notification-group">GoToMeeting</p>
                         </div>
                         <p className="notification-item">
@@ -22,7 +22,7 @@ export default class NotificationDropdown extends Component {
 
                     <li className="info">
                         <div className="header">
-                            <p className="notification-time">03:00 PM</p>
+                            <p className="notification-time">04:55 PM</p>
                             <p className="notification-group">Everyone</p>
                         </div>
                         <p className="notification-item">
@@ -55,7 +55,7 @@ export default class NotificationDropdown extends Component {
 
                     <li className="positive">
                         <div className="header">
-                            <p className="notification-time">03:00 PM</p>
+                            <p className="notification-time">03:45 PM</p>
                             <p className="notification-group">Everyone</p>
                         </div>
                         <p className="notification-item">
@@ -66,7 +66,7 @@ export default class NotificationDropdown extends Component {
 
                     <li className="info">
                         <div className="header">
-                            <p className="notification-time">03:00 PM</p>
+                            <p className="notification-time">03:23 AM</p>
                             <p className="notification-group">Everyone</p>
                         </div>
                         <p className="notification-item">
@@ -77,7 +77,7 @@ export default class NotificationDropdown extends Component {
 
                     <li className="warning">
                         <div className="header">
-                            <p className="notification-time">06:00 AM</p>
+                            <p className="notification-time">09:00 AM</p>
                             <p className="notification-group">GoToMeeting</p>
                         </div>
                         <p className="notification-item">
@@ -88,7 +88,7 @@ export default class NotificationDropdown extends Component {
 
                     <li className="promo">
                         <div className="header">
-                            <p className="notification-time">03:00 PM</p>
+                            <p className="notification-time">11:00 PM</p>
                             <p className="notification-group">Everyone</p>
                         </div>
                         <p className="notification-item">
