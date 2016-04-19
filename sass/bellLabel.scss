@@ -1,0 +1,13 @@
+.bell-label {
+  background: $color-red;
+  height: 1.5*$r;
+  width: 1.5*$r;
+  border-radius: 1.5*$r;
+  color: $color-white;
+  position: absolute;
+  text-align: center;
+  right: .33*$r;
+  top: .5*$r;
+  z-index: 10;
+  font-size: $r;
+}

@@ -1,0 +1,28 @@
+.bell {
+  padding: .75*$r;
+  border-radius: 2*$r;
+  background: darken($color-blue, 25%);
+
+  &:before {
+    color: white;
+    font-size: 1.25*$r;
+  }
+
+
+  &.selected {
+    background: $color-white;
+    &::before {
+      color: $color-blue;
+    }
+  }
+
+}
+
+@keyframes jingle-bells {
+  from {
+      transform: rotate(12deg);
+  }
+  to {
+      transform: rotate(-12deg);
+  }
+}

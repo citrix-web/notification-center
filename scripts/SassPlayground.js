@@ -23,8 +23,11 @@ export default class SassPlayground extends Component {
     render() {
         return (
             <div className="notification-center">
-                <FontAwesome onClick={this.toggleDropdown} name="fa fa-bell"/>
-                {this.state.visible ? <NotificationDropdown/> : null}
+                <div className="topbar">
+                    <div className="bell-label">1</div>
+                    <FontAwesome onClick={this.toggleDropdown} name="fa fa-bell" className="bell" />
+                    {this.state.visible ? <NotificationDropdown/> : null}
+                </div>
             </div>
         )
     }

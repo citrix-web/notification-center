@@ -5,8 +5,8 @@
 
   .fa.fa-bell {
     position: absolute;
-    right: 10px;
-    margin: 10px;
+    right: 0;
+    margin: $r;
     color: $bell-color;
 
     &:hover {
