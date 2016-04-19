@@ -5,7 +5,7 @@
 
   .fa.fa-bell {
     position: absolute;
-    right: 0;
+    right: 10px;
     margin: 10px;
     color: $bell-color;
 
@@ -15,18 +15,20 @@
   }
 
   .notification-dropdown {
-    background-color: $notification-center-background;
     width: 370px;
     position: absolute;
-    right: 0;
+    right: 10px;
     top: 50px;
+    color: #3f3f3f;
+    box-shadow: 4px 4px 5px $dropdown-shadow-color;
+    border-radius: 5px;
 
     .arrow-up {
       width: 0;
       height: 0;
       border-left: 10px solid transparent;
       border-right: 10px solid transparent;
-      border-bottom: 10px solid $notification-center-background;
+      border-bottom: 10px solid $positive-color-light;
       position: absolute;
       right: 11px;
       top: -10px;
@@ -36,28 +38,36 @@
       padding: 0;
       font-size: 16px;
       margin: 0;
+      height: 280px;
+      overflow-y: scroll;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
 
       li {
         list-style: none;
-        padding: 5px 5px;
+        padding: 12px 10px;
         margin: 0;
-        width: 370px;
-        border-bottom: 1px solid #fff;
+        width: 100%;
+        background-color: transparent;
 
         &.positive {
           border-left:10px solid $positive-color;
+          background-color: $positive-color-light;
         }
 
         &.warning {
           border-left:10px solid $warning-color;
+          background-color: $warning-color-light;
         }
 
         &.info {
           border-left:10px solid $info-color;
+          background-color: $info-color-light;
         }
 
         &.promo {
           border-left:10px solid $promo-color;
+          background-color: $promo-color-light;
         }
 
         .header {
@@ -72,19 +82,61 @@
 
           &.notification-group {
             float: right;
-            font-size: 14px;
+            font-size: 12px;
+            font-family: citrixsans-bold;
+            margin-right: 5px;
           }
 
           &.notification-time {
-            font-size: 14px;
+            font-size: 12px;
             float: left;
+            font-family: citrixsans-bold;
           }
 
           &.notification-item {
             width:100%;
+            font-family: citrixsans-regular;
+            padding-top: 9px;
+
+            span.fa {
+              font-size: 20px;
+              vertical-align: baseline;
+
+              &.warning {
+                color: $warning-color;
+              }
+
+              &.info {
+                color: $info-color;
+              }
+
+              &.positive {
+                color: $positive-color;
+              }
+
+              &.promo {
+                color: $promo-color;
+              }
+            }
           }
         }
       }
     }
+  }
+
+  button {
+    width: 100%;
+    color: $bell-color;
+    text-align: center;
+    border: none;
+    font-size: 14px;
+    font-family: citrixsans-semibold;
+    background-color: $button-background-color;
+    outline: none;
+    padding: 12px 0 12px 0;
+    height: 44px;
+    box-shadow: 4px 4px 5px $dropdown-shadow-color;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
   }
 }
