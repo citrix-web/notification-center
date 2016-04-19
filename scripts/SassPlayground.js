@@ -10,22 +10,31 @@ export default class SassPlayground extends Component {
         this.state = {
             visible: false
         };
-
+        this.bellClass = "bell";
+        this.unReadMessageNum = 1;
         this.toggleDropdown = this.toggleDropdown.bind(this);
     }
 
     toggleDropdown() {
         this.setState({
             visible: !this.state.visible
-        })
+        });
+
+        if (this.state.visible) {
+            this.bellClass = "bell";
+        } else {
+            this.bellClass = "bell selected"
+            this.unReadMessageNum = 0;
+        }
     }
 
     render() {
         return (
             <div className="notification-center">
                 <div className="topbar">
-                    <div className="bell-label">1</div>
-                    <FontAwesome onClick={this.toggleDropdown} name="fa fa-bell" className="bell" />
+                    {this.state.visible || this.unReadMessageNum === 0 ? null :
+                        <div className="bell-label">{this.unReadMessageNum}</div>}
+                    <FontAwesome onClick={this.toggleDropdown} name="fa fa-bell" className={this.bellClass}/>
                     {this.state.visible ? <NotificationDropdown/> : null}
                 </div>
             </div>

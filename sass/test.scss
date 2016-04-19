@@ -17,10 +17,10 @@
   .notification-dropdown {
     width: 370px;
     position: absolute;
-    right: 10px;
-    top: 50px;
+    right: 17px;
+    top: 63px;
     color: #3f3f3f;
-    box-shadow: 4px 4px 5px $dropdown-shadow-color;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     border-radius: 5px;
 
     .arrow-up {
@@ -51,22 +51,22 @@
         background-color: transparent;
 
         &.positive {
-          border-left:10px solid $positive-color;
+          border-left: 10px solid $positive-color;
           background-color: $positive-color-light;
         }
 
         &.warning {
-          border-left:10px solid $warning-color;
+          border-left: 10px solid $warning-color;
           background-color: $warning-color-light;
         }
 
         &.info {
-          border-left:10px solid $info-color;
+          border-left: 10px solid $info-color;
           background-color: $info-color-light;
         }
 
         &.promo {
-          border-left:10px solid $promo-color;
+          border-left: 10px solid $promo-color;
           background-color: $promo-color-light;
         }
 
@@ -94,7 +94,7 @@
           }
 
           &.notification-item {
-            width:100%;
+            width: 100%;
             font-family: citrixsans-regular;
             padding-top: 9px;
 
@@ -135,7 +135,7 @@
     outline: none;
     padding: 12px 0 12px 0;
     height: 44px;
-    box-shadow: 4px 4px 5px $dropdown-shadow-color;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0);
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
   }
