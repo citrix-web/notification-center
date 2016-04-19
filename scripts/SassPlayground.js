@@ -23,7 +23,7 @@ export default class SassPlayground extends Component {
         if (this.state.visible) {
             this.bellClass = "bell";
         } else {
-            this.bellClass = "bell selected"
+            this.bellClass = "bell selected";
             this.unReadMessageNum = 0;
         }
     }

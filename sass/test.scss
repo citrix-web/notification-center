@@ -21,7 +21,8 @@
     top: 63px;
     color: #3f3f3f;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    border-radius: 5px;
+    border-radius: 6px;
+    border: 1px solid #a8a8a8;
 
     .arrow-up {
       width: 0;
@@ -126,16 +127,16 @@
 
   button {
     width: 100%;
-    color: $bell-color;
+    color: #3d7dbd;
     text-align: center;
     border: none;
     font-size: 14px;
     font-family: citrixsans-semibold;
-    background-color: $button-background-color;
+    background-color: #fff;
     outline: none;
-    padding: 12px 0 12px 0;
-    height: 44px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0);
+    padding: 8px 0 12px 0;
+    height: 36px;
+    box-shadow: 0 4px 10px transparent;
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
   }
