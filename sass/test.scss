@@ -1,3 +1,90 @@
-span{
-  color: green;
+@import 'variables';
+
+.notification-center {
+  font-size: 24px;
+
+  .fa.fa-bell {
+    position: absolute;
+    right: 0;
+    margin: 10px;
+    color: $bell-color;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .notification-dropdown {
+    background-color: $notification-center-background;
+    width: 370px;
+    position: absolute;
+    right: 0;
+    top: 50px;
+
+    .arrow-up {
+      width: 0;
+      height: 0;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-bottom: 10px solid $notification-center-background;
+      position: absolute;
+      right: 11px;
+      top: -10px;
+    }
+
+    ul {
+      padding: 0;
+      font-size: 16px;
+      margin: 0;
+
+      li {
+        list-style: none;
+        padding: 5px 5px;
+        margin: 0;
+        width: 370px;
+        border-bottom: 1px solid #fff;
+
+        &.positive {
+          border-left:10px solid $positive-color;
+        }
+
+        &.warning {
+          border-left:10px solid $warning-color;
+        }
+
+        &.info {
+          border-left:10px solid $info-color;
+        }
+
+        &.promo {
+          border-left:10px solid $promo-color;
+        }
+
+        .header {
+          clear: both;
+        }
+
+        p {
+          margin: 0;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+
+          &.notification-group {
+            float: right;
+            font-size: 14px;
+          }
+
+          &.notification-time {
+            font-size: 14px;
+            float: left;
+          }
+
+          &.notification-item {
+            width:100%;
+          }
+        }
+      }
+    }
+  }
 }
