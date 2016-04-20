@@ -1,0 +1,7 @@
+import React, {Component} from 'react';
+import '../sass/index.scss';
+import FontAwesome from 'react-fontawesome';
+
+export default class MessageList extends Component {
+
+};
