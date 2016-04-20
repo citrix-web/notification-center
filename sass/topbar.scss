@@ -1,6 +1,7 @@
 .topbar {
   height: 5*$r;
-  background: $color_blue;
+  background: linear-gradient($color_blue, darken($color-blue, 5%));
+  border-bottom: 1px solid darken($color-blue, 15%);
 
   .logotype {
     margin-top: 1.5*$r;
