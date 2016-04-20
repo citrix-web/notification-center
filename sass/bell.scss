@@ -8,6 +8,9 @@
     font-size: 1.25*$r;
   }
 
+  &.new-message {
+    animation: 1s jingle-bells 1s 5 alternate;
+  }
 
   &.selected {
     background: $color-white;
@@ -19,10 +22,22 @@
 }
 
 @keyframes jingle-bells {
-  from {
+  0% {
+      transform: rotate(-12deg);
+  }
+  10% {
       transform: rotate(12deg);
   }
-  to {
+  20% {
       transform: rotate(-12deg);
+  }
+  30% {
+      transform: rotate(12deg);
+  }
+  40% {
+      transform: rotate(-12deg);
+  }
+  50% {
+      transform: rotate(0deg);
   }
 }
