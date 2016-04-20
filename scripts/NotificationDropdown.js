@@ -6,7 +6,7 @@ import FontAwesome from 'react-fontawesome';
 export default class NotificationDropdown extends Component {
     render() {
         return (
-            <div className="notification-dropdown">
+            <div>
                 <div className="arrow-up"></div>
                 <ul>
                     <li className="positive">
@@ -97,7 +97,6 @@ export default class NotificationDropdown extends Component {
                         </p>
                     </li>
                 </ul>
-                <button>See All</button>
             </div>
         )
     }
