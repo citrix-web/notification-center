@@ -1,7 +1,8 @@
 .bell {
   padding: .75*$r;
   border-radius: 2*$r;
-  background: darken($color-blue, 25%);
+  background: linear-gradient(darken($color-blue, 25%), darken($color-blue, 20%));
+  box-shadow: 0px 1px lighten($color-blue, 7%);
 
   &:before {
     color: white;
@@ -13,7 +14,8 @@
   }
 
   &.selected {
-    background: $color-white;
+    background: radial-gradient($color-white, lighten($color-blue, 40%));
+    box-shadow: 0px -1px darken($color-blue, 10%);
     &::before {
       color: $color-blue;
     }
