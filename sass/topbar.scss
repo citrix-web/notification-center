@@ -1,4 +1,9 @@
 .topbar {
   height: 5*$r;
   background: $color_blue;
+
+  .logotype {
+    margin-top: 1.33*$r;
+    margin-left: 1.33*$r;
+  }
 }

@@ -32,8 +32,9 @@ export default class SassPlayground extends Component {
         return (
             <div className="notification-center">
                 <div className="topbar">
+                    <img className="logotype" src="../images/logotype.svg" />
                     {this.state.visible || this.unReadMessageNum === 0 ? null :
-                        <div className="bell-label">{this.unReadMessageNum}</div>}
+                    <div className="bell-label">{this.unReadMessageNum}</div>}
                     <FontAwesome onClick={this.toggleDropdown} name="fa fa-bell" className={this.bellClass}/>
                     {this.state.visible ? <NotificationDropdown/> : null}
                 </div>
