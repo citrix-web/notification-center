@@ -1,110 +1,70 @@
 import React, {Component} from 'react';
 import '../../sass/index.scss';
 import FontAwesome from 'react-fontawesome';
-import superagent from 'superagent';
 
 export default class MessageList extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {};
+        this.state.messages = this.loadMessages();
+    }
 
-  constructor(props) {
-    super(props);
-    this.state = {};
-    this.state.messages = this.loadMessages();
-  }
+    loadMessages() {
+        // << to be replaced by the actual redux call >>
+        return [{"messageId":"10001", "messageTime": "3:10 PM", "group": "GoToMeeting", "read": true, "message": "GoToMeeting released a new feature called dialout."},
+                {"messageId":"10002", "messageTime": "4:10 PM", "group": "Everyone", "read": true, "message": "Everyone released a new feature called dialout."},
+                {"messageId":"10003", "messageTime": "5:10 PM", "group": "Instant Join", "read": false, "message": "Instant Join released a new feature called dialout."},
+                {"messageId":"10004", "messageTime": "6:10 PM", "group": "Hack Week", "read": false, "message": "Hack Week released a new feature called dialout."},
+                {"messageId":"10005", "messageTime": "7:10 PM", "group": "Everyone", "read": true, "message": "Everyone released a new feature called dialout."},
+                {"messageId":"10006", "messageTime": "8:10 PM", "group": "Instant Join", "read": true, "message": "Instant Join released a new feature called dialout."},
+                {"messageId":"10007", "messageTime": "9:10 PM", "group": "GoToMeeting", "read": true, "message": "GoToMeeting released a new feature called dialout."}
+               ];
+    };
 
-  loadMessages() {
-    superagent.get('http://localhost:3000/api/user/44444/read')
-      .end((err, response) => {
-        if (response.status >= 200 && response.status < 300) {
-          console.log('All previous messages', response);
-        } else {
-          const error = new Error(response.statusText);
-          console.log('Error getting messages', error);
-          error.response = response;
-          throw error;
-        }
-      });
+    render() {
+        var newMessage = (
+            Object.keys(this.props.newNotification).length ?
+                <li className={this.props.newNotification.category}>
+                    <div className= {this.props.read ? 'leftDiv hideDiv' : 'leftDiv'}>
+                        <FontAwesome name="fa fa-circle"/>
+                    </div>
+                    <div className="rightDiv">
+                        <div className="header">
+                            <p className="notification-time">Just Now</p>
+                            <p className="notification-group">{this.props.newNotification.group}</p>
+                        </div>
+                        <p className="notification-item">
+                            {this.props.newNotification.message}
+                        </p>
+                    </div>
+                </li> :
+            null
+        );
 
-    // << to be replaced by the actual redux call >>
-    return [{
-      "messageTime": "3:10 PM",
-      "recieverGroup": "GoToMeeting",
-      "category": "positive",
-      "message": "GoToMeeting released a new feature called dialout."
-    },
-      {
-        "messageTime": "4:10 PM",
-        "recieverGroup": "Everyone",
-        "category": "info",
-        "message": "Everyone released a new feature called dialout."
-      },
-      {
-        "messageTime": "5:10 PM",
-        "recieverGroup": "Instant Join",
-        "category": "warning",
-        "message": "Instant Join released a new feature called dialout."
-      },
-      {
-        "messageTime": "6:10 PM",
-        "recieverGroup": "Hack Week",
-        "category": "promo",
-        "message": "Hack Week released a new feature called dialout."
-      },
-      {
-        "messageTime": "4:10 PM",
-        "recieverGroup": "Everyone",
-        "category": "info",
-        "message": "Everyone released a new feature called dialout."
-      },
-      {
-        "messageTime": "5:10 PM",
-        "recieverGroup": "Instant Join",
-        "category": "warning",
-        "message": "Instant Join released a new feature called dialout."
-      },
-      {
-        "messageTime": "3:10 PM",
-        "recieverGroup": "GoToMeeting",
-        "category": "positive",
-        "message": "GoToMeeting released a new feature called dialout."
-      }
-    ];
-  };
+        var messages = this.state.messages.map(function (currentMessage) {
+            return (
+                <li key={currentMessage.messageId}>
+                    <div className= {currentMessage.read ? 'leftDiv hideDiv' : 'leftDiv'}>
+                        <FontAwesome name="fa fa-circle"/>
+                    </div>
+                    <div className="rightDiv">
+                        <div className="header">
+                            <p className="notification-time">{currentMessage.messageTime}</p>
+                            <p className="notification-group">{currentMessage.group}</p>
+                        </div>
+                        <p className="notification-item">
+                            {currentMessage.message}
+                        </p>
+                    </div>
+                </li>
+            )
+        });
 
-
-  render() {
-    var newMessage = (
-      Object.keys(this.props.newNotification).length ?
-        <li className={this.props.newNotification.category}>
-          <div className="header">
-            <p className="notification-time">Just Now</p>
-            <p className="notification-group">{this.props.newNotification.group}</p>
-          </div>
-          <p className="notification-item">
-            {this.props.newNotification.message}
-          </p>
-        </li> :
-        null
-    );
-
-    var messages = this.state.messages.map(function (currentMessage) {
-      return (
-        <li className={currentMessage.category}>
-          <div className="header">
-            <p className="notification-time">{currentMessage.messageTime}</p>
-            <p className="notification-group">{currentMessage.recieverGroup}</p>
-          </div>
-          <p className="notification-item">
-            {currentMessage.message}
-          </p>
-        </li>
-      )
-    });
-
-    return (
-      <ul>
-        {newMessage}
-        {messages}
-      </ul>
-    );
-  }
+        return (
+            <ul>
+                {newMessage}
+                {messages}
+            </ul>
+        );
+    }
 };
