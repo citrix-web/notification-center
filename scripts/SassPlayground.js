@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import '../sass/index.scss';
 import FontAwesome from 'react-fontawesome';
 import NotificationDropdown from '../scripts/NotificationDropdown';
+import BellComponent from './component/BellComponent';
 
 export default class SassPlayground extends Component {
 
@@ -36,7 +37,7 @@ export default class SassPlayground extends Component {
                     {this.state.visible || this.unReadMessageNum === 0 ? null :
                     <div className="bell-label">{this.unReadMessageNum}</div>}
                     <FontAwesome onClick={this.toggleDropdown} name="fa fa-bell" className={this.bellClass}/>
-                    {this.state.visible ? <NotificationDropdown/> : null}
+                    {this.state.visible ? <BellComponent/> : null}
                 </div>
             </div>
         )

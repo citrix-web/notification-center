@@ -10,11 +10,9 @@ export default class MessageListFooter extends Component {
     }
     render () {
         return (
-            <div>
-            <a onClick={this.onSeeAllClick}>
+            <button onClick={this.onSeeAllClick}>
                 See All
-            </a>
-            </div>
+            </button>
         );
     }
 };
