@@ -5,11 +5,15 @@ import '../../sass/index.scss';
 import FontAwesome from 'react-fontawesome';
 
 export default class NotificationContainer extends Component {
+  constructor(props) {
+    super(props)
+  }
+
   render() {
     return (
       <div className="notification-dropdown">
         <div className="arrow-up"></div>
-        <MessageListContainer />
+        <MessageListContainer newNotification={this.props.newNotification}/>
         <MessageListFooter />
       </div>
     );

@@ -59,6 +59,8 @@ export default class MessageList extends Component {
 
   
   render() {
+    console.log(this.props.newNotification);
+
     var messages = this.state.messages.map(function (currentMessage) {
       return (
         <li className={currentMessage.category}>
@@ -73,10 +75,22 @@ export default class MessageList extends Component {
       )
     });
 
-    return React.createElement(
-      'ul',
-      {},
-      messages
+    return (
+      <ul>
+        {Object.keys(this.props.newNotification).length ?
+          <li className={this.props.newNotification.category}>
+            <div className="header">
+              <p className="notification-time">Just Now</p>
+              <p className="notification-group">{this.props.newNotification.group}</p>
+            </div>
+            <p className="notification-item">
+              {this.props.newNotification.message}
+            </p>
+          </li> :
+          null
+        }
+        {messages}
+      </ul>
     );
   }
 };

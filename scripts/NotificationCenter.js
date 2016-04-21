@@ -5,7 +5,6 @@ import NotificationDropdown from '../scripts/NotificationDropdown';
 import BellComponent from './component/BellComponent';
 
 export default class NotificationCenter extends Component {
-
     constructor(props) {
         super(props);
         this.state = {
@@ -31,23 +30,21 @@ export default class NotificationCenter extends Component {
 
     render() {
         return (
-            <div className="wrapper">
-                <div className="notification-center">
-                    <div className="topbar">
-                        <img className="logotype" src="../images/logotype.svg" />
-                        {this.state.visible || this.unReadMessageNum === 0 ? null :
-                        <div className="bell-label">{this.unReadMessageNum}</div>}
-                        <FontAwesome onClick={this.toggleDropdown} name="fa fa-bell" className={this.bellClass}/>
-                        {this.state.visible ? <BellComponent/> : null}
-                    </div>
+            <div className="notification-center">
+                <div className="topbar">
+                    <img className="logotype" src="../images/logotype.svg" />
+                    {this.state.visible || this.unReadMessageNum === 0 ? null :
+                    <div className="bell-label">{this.unReadMessageNum}</div>}
+                    <FontAwesome onClick={this.toggleDropdown} name="fa fa-bell" className={this.bellClass}/>
+                    {this.state.visible ? <BellComponent newNotification={this.props.newNotification}/> : null}
                 </div>
                 <div className="main-content">
-                    <h1>My meetings</h1>
-                    <div className="card"></div>
-                    <div className="card"></div>
-                    <div className="card"></div>
-                    <div className="card"></div>
-                    <div className="card"></div>
+                  <h1>My meetings</h1>
+                  <div className="card"></div>
+                  <div className="card"></div>
+                  <div className="card"></div>
+                  <div className="card"></div>
+                  <div className="card"></div>
                 </div>
             </div>
 

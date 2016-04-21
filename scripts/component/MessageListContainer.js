@@ -3,10 +3,14 @@ import MessageList from './MessageList';
 import '../../sass/index.scss';
 
 export default class MessageListContainer extends Component {
+  constructor(props) {
+    super(props)
+  }
+
   render() {
     return (
       <div>
-        <MessageList />
+        <MessageList newNotification={this.props.newNotification} />
       </div>
     );
   }
