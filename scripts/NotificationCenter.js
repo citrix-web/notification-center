@@ -3,6 +3,7 @@ import '../sass/index.scss';
 import FontAwesome from 'react-fontawesome';
 import NotificationDropdown from '../scripts/NotificationDropdown';
 import BellComponent from './component/BellComponent';
+import superagent from 'superagent';
 
 export default class NotificationCenter extends Component {
     constructor(props) {
@@ -13,6 +14,7 @@ export default class NotificationCenter extends Component {
         this.bellClass = "bell";
         this.unReadMessageNum = 1;
         this.toggleDropdown = this.toggleDropdown.bind(this);
+        this.markRead = this.markRead.bind(this);
     }
 
     toggleDropdown() {
@@ -26,6 +28,26 @@ export default class NotificationCenter extends Component {
             this.bellClass = "bell selected";
             this.unReadMessageNum = 0;
         }
+
+        if (this.props.newNotification && !this.props.newNotification.read) {
+          this.markRead(this.props.newNotification);
+        }
+    }
+
+    markRead(notif) {
+      superagent.put('http://localhost:3000/api/user/12345/read')
+        .send({ messageId: notif.id })
+        .end((err,response) => {
+          if (response.status >= 200 && response.status < 300) {
+            console.log(response);
+            //dispatch(sendSuccess(response));
+          } else {
+            const error = new Error(response.statusText);
+            error.response = response;
+            //dispatch(sendFailure(error));
+            throw error;
+          }
+        })
     }
 
     render() {

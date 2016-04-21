@@ -13,6 +13,7 @@ export default class App extends Component {
   onNewNotification(data) {
     this.setState({
       newNotification: {
+        id: data.id,
         message: data.message,
         group: data.group,
         category: data.category,
@@ -28,6 +29,7 @@ export default class App extends Component {
       socket.on('messages', function (data) {
         console.log(data);
         self.onNewNotification({
+          id: data[0].MessageId,
           message: data[0].Body,
           group: data[0].MessageAttributes.group.StringValue,
           category: data[0].MessageAttributes.category.StringValue
