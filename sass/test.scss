@@ -22,7 +22,7 @@ body {
     width: 370px;
     position: absolute;
     right: 17px;
-    top: 63px;
+    top: 70px;
     color: #3f3f3f;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     border-radius: 6px;
@@ -50,29 +50,25 @@ body {
 
       li {
         list-style: none;
-        padding: 12px 10px;
-        margin: 0;
+        padding: 10px 10px;
+        height: 70px;
         width: 100%;
-        background-color: transparent;
+        border-bottom: 0.5px solid black;
+        background-color: white;
 
-        &.positive {
-          border-left: 10px solid $positive-color;
-          background-color: $positive-color-light;
+        .leftDiv {
+          color: #3d7dbd;
+          margin-top: 8px;
+          float: left;
         }
 
-        &.warning {
-          border-left: 10px solid $warning-color;
-          background-color: $warning-color-light;
+        .hideDiv {
+          visibility: hidden;
         }
 
-        &.info {
-          border-left: 10px solid $info-color;
-          background-color: $info-color-light;
-        }
-
-        &.promo {
-          border-left: 10px solid $promo-color;
-          background-color: $promo-color-light;
+        .rightDiv {
+          width: 90%;
+          float: right;
         }
 
         .header {
