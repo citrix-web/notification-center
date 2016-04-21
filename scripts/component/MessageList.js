@@ -57,6 +57,15 @@ export default class MessageList extends Component {
     ];
   };
 
+  componentDidMount() {
+    var socket = io.connect('http://localhost:3000');
+    socket.on('connect', function(data) {
+      socket.on('messages', function(data) {
+        console.log(data);
+      });
+    });
+  }
+
   render() {
     var messages = this.state.messages.map(function (currentMessage) {
       return (
