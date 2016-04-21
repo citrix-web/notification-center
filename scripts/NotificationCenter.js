@@ -31,15 +31,26 @@ export default class NotificationCenter extends Component {
 
     render() {
         return (
-            <div className="notification-center">
-                <div className="topbar">
-                    <img className="logotype" src="../images/logotype.svg" />
-                    {this.state.visible || this.unReadMessageNum === 0 ? null :
-                    <div className="bell-label">{this.unReadMessageNum}</div>}
-                    <FontAwesome onClick={this.toggleDropdown} name="fa fa-bell" className={this.bellClass}/>
-                    {this.state.visible ? <BellComponent/> : null}
+            <div className="wrapper">
+                <div className="notification-center">
+                    <div className="topbar">
+                        <img className="logotype" src="../images/logotype.svg" />
+                        {this.state.visible || this.unReadMessageNum === 0 ? null :
+                        <div className="bell-label">{this.unReadMessageNum}</div>}
+                        <FontAwesome onClick={this.toggleDropdown} name="fa fa-bell" className={this.bellClass}/>
+                        {this.state.visible ? <BellComponent/> : null}
+                    </div>
+                </div>
+                <div className="main-content">
+                    <h1>My meetings</h1>
+                    <div className="card"></div>
+                    <div className="card"></div>
+                    <div className="card"></div>
+                    <div className="card"></div>
+                    <div className="card"></div>
                 </div>
             </div>
+
         )
     }
 };

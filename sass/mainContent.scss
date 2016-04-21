@@ -1,0 +1,18 @@
+.main-content {
+  font-family: citrixsans-light;
+  margin: 0 auto;
+  max-width: 80vw;
+
+  h1 {
+    margin-top: 4*$r;
+    margin-bottom: 2*$r;
+    color: darken($color-blue, 10%);
+  }
+  .card {
+    border: 1px solid darken($color-white, 10%);
+    height: 8*$r;
+    border-radius: .125*$r;
+    box-shadow: 0 2px 4px rgba(0,0,0,.05);
+    margin-bottom: $r;
+  }
+  }
