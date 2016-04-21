@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
-import SassPlayground from './SassPlayground';
+import NotificationCenter from './NotificationCenter';
 
 export default class App extends Component {
     render() {
         return (
             <div>
-                <SassPlayground/>
+                <NotificationCenter/>
             </div>
         );
     }

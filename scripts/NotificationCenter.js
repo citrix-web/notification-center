@@ -4,7 +4,7 @@ import FontAwesome from 'react-fontawesome';
 import NotificationDropdown from '../scripts/NotificationDropdown';
 import BellComponent from './component/BellComponent';
 
-export default class SassPlayground extends Component {
+export default class NotificationCenter extends Component {
 
     constructor(props) {
         super(props);
