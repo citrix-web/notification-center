@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import '../../sass/index.scss';
 import FontAwesome from 'react-fontawesome';
+import superagent from 'superagent';
 
 export default class MessageList extends Component {
 
@@ -11,6 +12,18 @@ export default class MessageList extends Component {
   }
 
   loadMessages() {
+    superagent.get('http://localhost:3000/api/user/44444/read')
+      .end((err, response) => {
+        if (response.status >= 200 && response.status < 300) {
+          console.log('All previous messages', response);
+        } else {
+          const error = new Error(response.statusText);
+          console.log('Error getting messages', error);
+          error.response = response;
+          throw error;
+        }
+      });
+
     // << to be replaced by the actual redux call >>
     return [{
       "messageTime": "3:10 PM",
@@ -57,9 +70,21 @@ export default class MessageList extends Component {
     ];
   };
 
-  
+
   render() {
-    console.log(this.props.newNotification);
+    var newMessage = (
+      Object.keys(this.props.newNotification).length ?
+        <li className={this.props.newNotification.category}>
+          <div className="header">
+            <p className="notification-time">Just Now</p>
+            <p className="notification-group">{this.props.newNotification.group}</p>
+          </div>
+          <p className="notification-item">
+            {this.props.newNotification.message}
+          </p>
+        </li> :
+        null
+    );
 
     var messages = this.state.messages.map(function (currentMessage) {
       return (
@@ -77,18 +102,7 @@ export default class MessageList extends Component {
 
     return (
       <ul>
-        {Object.keys(this.props.newNotification).length ?
-          <li className={this.props.newNotification.category}>
-            <div className="header">
-              <p className="notification-time">Just Now</p>
-              <p className="notification-group">{this.props.newNotification.group}</p>
-            </div>
-            <p className="notification-item">
-              {this.props.newNotification.message}
-            </p>
-          </li> :
-          null
-        }
+        {newMessage}
         {messages}
       </ul>
     );
