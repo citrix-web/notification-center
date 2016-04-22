@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import NotificationCenter from './NotificationCenter';
 import superagent from 'superagent';
-
+import {uniqBy} from 'lodash';
 export default class App extends Component {
   constructor(props) {
     super(props);
@@ -19,6 +19,7 @@ export default class App extends Component {
     old.forEach((notification) => {
       notification.read = true;
     })
+    uniqBy(old, 'id');
     this.setState({oldNotifications: old, newNotifications: []});
   }
 
@@ -32,6 +33,7 @@ export default class App extends Component {
       read: false
     });
 
+    uniqBy(newNotifications, 'id');
     this.setState({
       newNotifications: newNotifications
     });
@@ -49,6 +51,8 @@ export default class App extends Component {
         read: true
       }
     });
+    uniqBy(setMessages, 'id');
+
     this.setState({
       oldNotifications: setMessages
     })
