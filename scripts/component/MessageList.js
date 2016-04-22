@@ -1,70 +1,96 @@
 import React, {Component} from 'react';
 import '../../sass/index.scss';
 import FontAwesome from 'react-fontawesome';
+import superagent from 'superagent';
 
 export default class MessageList extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {};
-        this.state.messages = this.loadMessages();
-    }
-
-    loadMessages() {
-        // << to be replaced by the actual redux call >>
-        return [{"messageId":"10001", "messageTime": "3:10 PM", "group": "GoToMeeting", "read": true, "message": "GoToMeeting released a new feature called dialout."},
-                {"messageId":"10002", "messageTime": "4:10 PM", "group": "Everyone", "read": true, "message": "Everyone released a new feature called dialout."},
-                {"messageId":"10003", "messageTime": "5:10 PM", "group": "Instant Join", "read": false, "message": "Instant Join released a new feature called dialout."},
-                {"messageId":"10004", "messageTime": "6:10 PM", "group": "Hack Week", "read": false, "message": "Hack Week released a new feature called dialout."},
-                {"messageId":"10005", "messageTime": "7:10 PM", "group": "Everyone", "read": true, "message": "Everyone released a new feature called dialout."},
-                {"messageId":"10006", "messageTime": "8:10 PM", "group": "Instant Join", "read": true, "message": "Instant Join released a new feature called dialout."},
-                {"messageId":"10007", "messageTime": "9:10 PM", "group": "GoToMeeting", "read": true, "message": "GoToMeeting released a new feature called dialout."}
-               ];
+  constructor(props) {
+    super(props);
+    this.state = {
+      oldNotifications: []
     };
 
-    render() {
-        var newMessage = (
-            Object.keys(this.props.newNotification).length ?
-                <li className={this.props.newNotification.category}>
-                    <div className= {this.props.read ? 'leftDiv hideDiv' : 'leftDiv'}>
-                        <FontAwesome name="fa fa-circle"/>
-                    </div>
-                    <div className="rightDiv">
-                        <div className="header">
-                            <p className="notification-time">Just Now</p>
-                            <p className="notification-group">{this.props.newNotification.group}</p>
-                        </div>
-                        <p className="notification-item">
-                            {this.props.newNotification.message}
-                        </p>
-                    </div>
-                </li> :
-            null
-        );
+    this.setMessages = this.setMessages.bind(this);
+  }
 
-        var messages = this.state.messages.map(function (currentMessage) {
-            return (
-                <li key={currentMessage.messageId}>
-                    <div className= {currentMessage.read ? 'leftDiv hideDiv' : 'leftDiv'}>
-                        <FontAwesome name="fa fa-circle"/>
-                    </div>
-                    <div className="rightDiv">
-                        <div className="header">
-                            <p className="notification-time">{currentMessage.messageTime}</p>
-                            <p className="notification-group">{currentMessage.group}</p>
-                        </div>
-                        <p className="notification-item">
-                            {currentMessage.message}
-                        </p>
-                    </div>
-                </li>
-            )
-        });
+  setMessages(messages) {
+    var setMessages = messages.map(function (msg) {
+      var date = new Date(parseInt(msg.Attributes.SentTimestamp));
+      return {
+        id: msg.MessageId,
+        message: msg.Body,
+        group: msg.MessageAttributes ? msg.MessageAttributes.group.StringValue : '',
+        category: msg.MessageAttributes ? msg.MessageAttributes.category.StringValue : '',
+        date: date,
+        read: true
+      }
+    });
+    this.setState({
+      oldNotifications: setMessages
+    })
+  }
 
-        return (
-            <ul>
-                {newMessage}
-                {messages}
-            </ul>
-        );
-    }
+  componentWillMount() {
+    superagent.get('http://localhost:3000/api/messages?limit=6')
+      .end((err, response) => {
+        if (response.status >= 200 && response.status < 300) {
+          console.log('All previous messages', response);
+          this.setMessages(response.body.Items);
+        } else {
+          const error = new Error(response.statusText);
+          console.log('Error getting messages', error);
+          error.response = response;
+          throw error;
+        }
+      });
+  }
+
+  render() {
+    var newMessage = (
+      Object.keys(this.props.newNotification).length ?
+        <li className={this.props.newNotification.category}>
+          <div className={this.props.read ? 'leftDiv hideDiv' : 'leftDiv'}>
+            <FontAwesome name="fa fa-circle"/>
+          </div>
+          <div className="rightDiv">
+            <div className="header">
+              <p className="notification-time">Just Now</p>
+              <p className="notification-group">{this.props.newNotification.group}</p>
+            </div>
+            <span>{this.props.newNotification.category}</span>
+            <p className="notification-item">
+              {this.props.newNotification.message}
+            </p>
+          </div>
+        </li> :
+        null
+    );
+
+    var messages = this.state.oldNotifications.map(function (currentMessage) {
+      return (
+        <li key={currentMessage.id}>
+          <div className={currentMessage.read ? 'leftDiv hideDiv' : 'leftDiv'}>
+            <FontAwesome name="fa fa-circle"/>
+          </div>
+          <div className="rightDiv">
+            <div className="header">
+              <p className="notification-time">{currentMessage.messageTime}</p>
+              <p className="notification-group">{currentMessage.group}</p>
+            </div>
+            <span>{currentMessage.category}</span>
+            <p className="notification-item">
+              {currentMessage.message}
+            </p>
+          </div>
+        </li>
+      )
+    });
+
+    return (
+      <ul>
+        {newMessage}
+        {messages}
+      </ul>
+    );
+  }
 };

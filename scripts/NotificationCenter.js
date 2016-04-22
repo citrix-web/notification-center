@@ -26,7 +26,6 @@ export default class NotificationCenter extends Component {
             this.bellClass = "bell";
         } else {
             this.bellClass = "bell selected";
-            this.unReadMessageNum = 0;
         }
 
         if (this.props.newNotification && !this.props.newNotification.read) {
@@ -55,8 +54,9 @@ export default class NotificationCenter extends Component {
             <div className="notification-center">
                 <div className="topbar">
                     <img className="logotype" src="../images/logotype.svg" />
-                    {this.state.visible || this.unReadMessageNum === 0 ? null :
-                    <div className="bell-label">{this.unReadMessageNum}</div>}
+                    {!this.state.visible && this.props.newNotification && !this.props.newNotification.read ?
+                    <div className="bell-label new-message">{this.unReadMessageNum}</div> :
+                    null}
                     <FontAwesome onClick={this.toggleDropdown} name="fa fa-bell" className={this.bellClass}/>
                     {this.state.visible ? <BellComponent newNotification={this.props.newNotification}/> : null}
                 </div>
