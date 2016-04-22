@@ -5,21 +5,24 @@ export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      newNotification: {}
+      newNotifications: []
     };
     this.onNewNotification = this.onNewNotification.bind(this);
   }
 
   onNewNotification(data) {
+    let newNotifications = this.state.newNotifications;
+    newNotifications.push({
+      id: data.id,
+      message: data.message,
+      group: data.group,
+      category: data.category,
+      read: false
+    });
+
     this.setState({
-      newNotification: {
-        id: data.id,
-        message: data.message,
-        group: data.group,
-        category: data.category,
-        read: false
-      }
-    })
+      newNotifications: newNotifications
+    });
   }
 
   componentDidMount() {
@@ -42,7 +45,7 @@ export default class App extends Component {
     return (
       <div>
         <NotificationCenter
-          newNotification={this.state.newNotification}
+          newNotifications={this.state.newNotifications}
         />
       </div>
     );

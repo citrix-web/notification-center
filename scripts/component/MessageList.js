@@ -46,25 +46,25 @@ export default class MessageList extends Component {
   }
 
   render() {
-    var newMessage = (
-      Object.keys(this.props.newNotification).length ?
-        <li className={this.props.newNotification.category}>
-          <div className={this.props.read ? 'leftDiv hideDiv' : 'leftDiv'}>
+    var newMessage = this.props.newNotifications.map(function (newMessage) {
+      return (
+        <li className={newMessage.category}>
+          <div className={newMessage.read ? 'leftDiv hideDiv' : 'leftDiv'}>
             <FontAwesome name="fa fa-circle"/>
           </div>
           <div className="rightDiv">
             <div className="header">
               <p className="notification-time">Just Now</p>
-              <p className="notification-group">{this.props.newNotification.group}</p>
+              <p className="notification-group">{newMessage.group}</p>
             </div>
-            <span>{this.props.newNotification.category}</span>
+            <span>{newMessage.category}</span>
             <p className="notification-item">
-              {this.props.newNotification.message}
+              {newMessage.message}
             </p>
           </div>
-        </li> :
-        null
-    );
+        </li>
+      );
+    });
 
     var messages = this.state.oldNotifications.map(function (currentMessage) {
       return (

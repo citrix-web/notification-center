@@ -10,7 +10,7 @@ export default class MessageListContainer extends Component {
   render() {
     return (
       <div>
-        <MessageList newNotification={this.props.newNotification} />
+        <MessageList newNotifications={this.props.newNotifications} />
       </div>
     );
   }
