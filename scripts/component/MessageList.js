@@ -41,6 +41,10 @@ export default class MessageList extends Component {
         case 'other':
            return 'other';
            break;
+
+        default:
+            return 'other';
+            break;
       }
     };
 

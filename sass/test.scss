@@ -120,6 +120,7 @@ body {
           &.notification-time {
             float: left;
             font-size: 11px;
+            margin-top: 5px;
             font-family: citrixsans-regular;
             color:gray;
           }
@@ -128,11 +129,9 @@ body {
             width: 100%;
             font-family: citrixsans-regular;
             padding-top: 9px;
-
-            span.fa {
-              font-size: 20px;
-              vertical-align: baseline;
-            }
+            font-size: 12px;
+            margin-top: 18px;
+            position: absolute;
           }
         }
       }
