@@ -15,6 +15,14 @@
     .bell {
       background: linear-gradient(darken($gotomeeting-color, 25%), darken($gotomeeting-color, 20%));
       box-shadow: 0px 1px lighten($gotomeeting-color, 7%);
+
+      &.selected {
+        background: radial-gradient($color-white, lighten($gotomeeting-color, 40%));
+        box-shadow: 0px -1px darken($gotomeeting-color, 10%);
+        &::before {
+          color: $gotomeeting-color;
+        }
+      }
     }
   }
 
@@ -25,6 +33,14 @@
     .bell {
       background: linear-gradient(darken($gotoassist-color, 25%), darken($gotoassist-color, 20%));
       box-shadow: 0px 1px lighten($gotoassist-color, 7%);
+
+      &.selected {
+        background: radial-gradient($color-white, lighten($gotoassist-color, 40%));
+        box-shadow: 0px -1px darken($gotoassist-color, 10%);
+        &::before {
+          color: $gotoassist-color;
+        }
+      }
     }
   }
 
@@ -35,6 +51,14 @@
     .bell {
       background: linear-gradient(darken($gotowebinar-color, 25%), darken($gotowebinar-color, 20%));
       box-shadow: 0px 1px lighten($gotowebinar-color, 7%);
+
+      &.selected {
+        background: radial-gradient($color-white, lighten($gotowebinar-color, 40%));
+        box-shadow: 0px -1px darken($gotowebinar-color, 10%);
+        &::before {
+          color: $gotowebinar-color;
+        }
+      }
     }
   }
 
@@ -45,6 +69,14 @@
     .bell {
       background: linear-gradient(darken($gototraining-color, 25%), darken($gototraining-color, 20%));
       box-shadow: 0px 1px lighten($gototraining-color, 7%);
+
+      &.selected {
+        background: radial-gradient($color-white, lighten($gototraining-color, 40%));
+        box-shadow: 0px -1px darken($gototraining-color, 10%);
+        &::before {
+          color: $gototraining-color;
+        }
+      }
     }
   }
 }
