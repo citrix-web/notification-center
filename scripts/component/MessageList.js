@@ -53,8 +53,8 @@ export default class MessageList extends Component {
           </div>
           <div className="rightDiv">
             <div className="header">
-              <p className="notification-time">Just Now</p>
-              <p className="notification-group">{newMessage.category}</p>
+              <p className="notification-time">{self.messageTime(newMessage.date)}</p>
+              <p className={"notification-group " + self.getCategoryClass(newMessage.category)}>{newMessage.category}</p>
             </div>
             <p className="notification-item">
               {newMessage.message}

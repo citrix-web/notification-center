@@ -93,27 +93,27 @@ body {
             margin-top: 5px;
 
             &.new-feature {
-              background-color: $warning-color;
+              background-color: #19ad50;
             }
 
             &.outage {
-              background-color: $warning-color;
+              background-color: #b82824;
             }
 
             &.bug-fix {
-              background-color: $warning-color;
+              background-color: #b82824;
             }
 
             &.terms-and-condition {
-              background-color: $info-color;
+              background-color: #b82824;
             }
 
             &.other {
-              background-color: $positive-color;
+              background-color: #3572b1;
             }
 
             &.world-domination {
-              background-color: $promo-color;
+              background-color: #19ad50;
             }
           }
 
