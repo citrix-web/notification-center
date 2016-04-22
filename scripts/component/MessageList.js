@@ -15,6 +15,35 @@ export default class MessageList extends Component {
     return( h + ":" + m + " " +ampm);
   };
 
+  getCategoryClass (categoryName) {
+      var str = categoryName.replace(/\s/g, '').toLowerCase();
+      switch(str) {
+        case 'newfeature':
+            return 'new-feature';
+            break;
+
+        case 'bugFix':
+            return 'bug-fix';
+            break;
+
+        case 'outage':
+            return 'outage';
+            break;
+
+        case 'termschange':
+             return 'terms-and-condition';
+             break;
+
+        case 'worlddomination':
+              return 'world-domination';
+              break;
+
+        case 'other':
+           return 'other';
+           break;
+      }
+    };
+
   render() {
     var newMessage = this.props.newNotifications.map(function (newMessage) {
       return (
@@ -44,7 +73,7 @@ export default class MessageList extends Component {
           <div className="rightDiv">
             <div className="header">
               <p className="notification-time">{self.messageTime(currentMessage.date)}</p>
-              <p className="notification-group">{currentMessage.category}</p>
+              <p className={"notification-group " + self.getCategoryClass(currentMessage.category)}>{currentMessage.category}</p>
             </div>
             <p className="notification-item">
               {currentMessage.message}

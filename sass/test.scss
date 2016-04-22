@@ -33,7 +33,7 @@ body {
       height: 0;
       border-left: 10px solid transparent;
       border-right: 10px solid transparent;
-      border-bottom: 10px solid $positive-color-light;
+      border-bottom: 10px solid white;
       position: absolute;
       right: 11px;
       top: -10px;
@@ -91,6 +91,30 @@ body {
             font-weight: 600;
             border-radius: 3px;
             margin-top: 5px;
+
+            &.new-feature {
+              background-color: $warning-color;
+            }
+
+            &.outage {
+              background-color: $warning-color;
+            }
+
+            &.bug-fix {
+              background-color: $warning-color;
+            }
+
+            &.terms-and-condition {
+              background-color: $info-color;
+            }
+
+            &.other {
+              background-color: $positive-color;
+            }
+
+            &.world-domination {
+              background-color: $promo-color;
+            }
           }
 
           &.notification-time {
@@ -108,22 +132,6 @@ body {
             span.fa {
               font-size: 20px;
               vertical-align: baseline;
-
-              &.warning {
-                color: $warning-color;
-              }
-
-              &.info {
-                color: $info-color;
-              }
-
-              &.positive {
-                color: $positive-color;
-              }
-
-              &.promo {
-                color: $promo-color;
-              }
             }
           }
         }
