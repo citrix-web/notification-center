@@ -7,6 +7,13 @@ export default class MessageList extends Component {
     super(props);
   }
 
+  messageTime (messageTimeEpoch) {
+    var messageDay = new Date(messageTimeEpoch),
+        h = messageDay.getHours(),
+        m = messageDay.getMinutes(),
+        ampm = h < 12 ? 'AM': 'PM';
+    return( h + ":" + m + " " +ampm);
+  };
 
   render() {
     var newMessage = this.props.newNotifications.map(function (newMessage) {
@@ -18,9 +25,8 @@ export default class MessageList extends Component {
           <div className="rightDiv">
             <div className="header">
               <p className="notification-time">Just Now</p>
-              <p className="notification-group">{newMessage.group}</p>
+              <p className="notification-group">{newMessage.category}</p>
             </div>
-            <span>{newMessage.category}</span>
             <p className="notification-item">
               {newMessage.message}
             </p>
@@ -28,7 +34,7 @@ export default class MessageList extends Component {
         </li>
       );
     });
-
+ var self = this;
     var messages = this.props.oldNotifications.map(function (currentMessage) {
       return (
         <li key={currentMessage.id}>
@@ -37,10 +43,9 @@ export default class MessageList extends Component {
           </div>
           <div className="rightDiv">
             <div className="header">
-              <p className="notification-time">{currentMessage.messageTime}</p>
-              <p className="notification-group">{currentMessage.group}</p>
+              <p className="notification-time">{self.messageTime(currentMessage.date)}</p>
+              <p className="notification-group">{currentMessage.category}</p>
             </div>
-            <span>{currentMessage.category}</span>
             <p className="notification-item">
               {currentMessage.message}
             </p>

@@ -53,7 +53,7 @@ body {
         padding: 10px 10px;
         height: 70px;
         width: 100%;
-        border-bottom: 0.5px solid black;
+        border-bottom: 0.5px solid #E2E1E1;
         background-color: white;
 
         .leftDiv {
@@ -83,15 +83,21 @@ body {
 
           &.notification-group {
             float: right;
-            font-size: 12px;
-            font-family: citrixsans-bold;
+            font-size: 11px;
+            font-family: citrixsans-regular;
             margin-right: 5px;
+            padding: 3px 8px;
+            color: white;
+            font-weight: 600;
+            border-radius: 3px;
+            margin-top: 5px;
           }
 
           &.notification-time {
-            font-size: 12px;
             float: left;
-            font-family: citrixsans-bold;
+            font-size: 11px;
+            font-family: citrixsans-regular;
+            color:gray;
           }
 
           &.notification-item {
