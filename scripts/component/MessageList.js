@@ -49,6 +49,8 @@ export default class MessageList extends Component {
     };
 
   render() {
+
+  var self = this;
     var newMessage = this.props.newNotifications.map(function (newMessage) {
       return (
         <li className={newMessage.category}>
@@ -57,7 +59,7 @@ export default class MessageList extends Component {
           </div>
           <div className="rightDiv">
             <div className="header">
-              <p className="notification-time">{self.messageTime(newMessage.date)}</p>
+              <p className="notification-time">Just Now</p>
               <p className={"notification-group " + self.getCategoryClass(newMessage.category)}>{newMessage.category}</p>
             </div>
             <p className="notification-item">
@@ -67,7 +69,7 @@ export default class MessageList extends Component {
         </li>
       );
     });
- var self = this;
+
     var messages = this.props.oldNotifications.map(function (currentMessage) {
       return (
         <li key={currentMessage.id}>
