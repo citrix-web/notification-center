@@ -26,6 +26,7 @@ export default class App extends Component {
 
   onNewNotification(data) {
     let newNotifications = this.state.newNotifications;
+    let uniqNewNotifications;
     newNotifications.unshift({
       id: data.id,
       message: data.message,
@@ -34,9 +35,9 @@ export default class App extends Component {
       read: false
     });
 
-    uniqBy(newNotifications, 'id');
+    uniqNewNotifications = uniqBy(newNotifications, 'id');
     this.setState({
-      newNotifications: newNotifications
+      newNotifications: uniqNewNotifications
     });
   }
 
