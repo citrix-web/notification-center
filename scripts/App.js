@@ -1,13 +1,12 @@
 import React, {Component} from 'react';
 import NotificationCenter from './NotificationCenter';
 import superagent from 'superagent';
-import {uniqBy, orderBy} from 'lodash';
+import {uniqBy} from 'lodash';
 export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      newNotifications: [],
-      oldNotifications: []
+      newNotifications: []
     };
     this.onNewNotification = this.onNewNotification.bind(this);
     this.setMessages = this.setMessages.bind(this);
@@ -15,18 +14,17 @@ export default class App extends Component {
   }
 
   read() {
-    let uniqOld;
+
     let old = this.state.newNotifications.concat(this.state.oldNotifications);
     old.forEach((notification) => {
       notification.read = true;
-    });
-    uniqOld = uniqBy(old, 'id');
-    this.setState({oldNotifications: uniqOld, newNotifications: []});
+    })
+    uniqBy(old, 'id');
+    this.setState({oldNotifications: old, newNotifications: []});
   }
 
   onNewNotification(data) {
     let newNotifications = this.state.newNotifications;
-    let uniqNewNotifications;
     newNotifications.unshift({
       id: data.id,
       message: data.message,
@@ -35,14 +33,13 @@ export default class App extends Component {
       read: false
     });
 
-    uniqNewNotifications = uniqBy(newNotifications, 'id');
+    uniqBy(newNotifications, 'id');
     this.setState({
-      newNotifications: uniqNewNotifications
+      newNotifications: newNotifications
     });
   }
 
   setMessages(messages) {
-    var uniqMsgs, orderedMsgs;
     var setMessages = messages.map(function (msg) {
       var date = new Date(parseInt(msg.Attributes.SentTimestamp));
       return {
@@ -50,17 +47,14 @@ export default class App extends Component {
         message: msg.Body,
         group: msg.MessageAttributes ? msg.MessageAttributes.group.StringValue : '',
         category: msg.MessageAttributes ? msg.MessageAttributes.category.StringValue : '',
-        timestamp: parseInt(msg.Attributes.SentTimestamp || []),
         date: date,
         read: true
       }
     });
-
-    uniqMsgs = uniqBy(setMessages, 'id');
-    orderedMsgs = orderBy(uniqMsgs, 'timestamp', 'desc');
+    uniqBy(setMessages, 'id');
 
     this.setState({
-      oldNotifications: orderedMsgs
+      oldNotifications: setMessages
     })
   }
 
@@ -78,7 +72,7 @@ export default class App extends Component {
         })
       });
     });
-    superagent.get('http://localhost:3000/api/messages')
+    superagent.get('http://localhost:3000/api/messages?limit=6')
       .end((err, response) => {
         if (response.status >= 200 && response.status < 300) {
           console.log('All previous messages', response);
