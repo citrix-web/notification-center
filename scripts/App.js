@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
 import NotificationCenter from './NotificationCenter';
 import superagent from 'superagent';
-import {uniqBy} from 'lodash';
+import {uniqBy, orderBy} from 'lodash';
 export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      newNotifications: []
+      newNotifications: [],
+      oldNotifications: []
     };
     this.onNewNotification = this.onNewNotification.bind(this);
     this.setMessages = this.setMessages.bind(this);
@@ -14,13 +15,13 @@ export default class App extends Component {
   }
 
   read() {
-
+    let uniqOld;
     let old = this.state.newNotifications.concat(this.state.oldNotifications);
     old.forEach((notification) => {
       notification.read = true;
-    })
-    uniqBy(old, 'id');
-    this.setState({oldNotifications: old, newNotifications: []});
+    });
+    uniqOld = uniqBy(old, 'id');
+    this.setState({oldNotifications: uniqOld, newNotifications: []});
   }
 
   onNewNotification(data) {
@@ -40,6 +41,7 @@ export default class App extends Component {
   }
 
   setMessages(messages) {
+    var uniqMsgs, orderedMsgs;
     var setMessages = messages.map(function (msg) {
       var date = new Date(parseInt(msg.Attributes.SentTimestamp));
       return {
@@ -47,14 +49,17 @@ export default class App extends Component {
         message: msg.Body,
         group: msg.MessageAttributes ? msg.MessageAttributes.group.StringValue : '',
         category: msg.MessageAttributes ? msg.MessageAttributes.category.StringValue : '',
+        timestamp: parseInt(msg.Attributes.SentTimestamp || []),
         date: date,
         read: true
       }
     });
-    uniqBy(setMessages, 'id');
+
+    uniqMsgs = uniqBy(setMessages, 'id');
+    orderedMsgs = orderBy(uniqMsgs, 'timestamp', 'desc');
 
     this.setState({
-      oldNotifications: setMessages
+      oldNotifications: orderedMsgs
     })
   }
 
@@ -72,7 +77,7 @@ export default class App extends Component {
         })
       });
     });
-    superagent.get('http://localhost:3000/api/messages?limit=6')
+    superagent.get('http://localhost:3000/api/messages')
       .end((err, response) => {
         if (response.status >= 200 && response.status < 300) {
           console.log('All previous messages', response);
