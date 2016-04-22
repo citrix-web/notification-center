@@ -55,6 +55,9 @@ export default class NotificationCenter extends Component {
     }
 
     render() {
+        let bellClasses = (this.props.newNotifications && this.props.newNotifications.length) ?
+          this.bellClass + ' new-message' : this.bellClass;
+
         return (
             <div className="notification-center">
                 <div className="topbar">
@@ -62,7 +65,7 @@ export default class NotificationCenter extends Component {
                     {!this.state.visible && this.props.newNotifications.length ?
                     <div className="bell-label new-message">{this.props.newNotifications.length}</div> :
                     null}
-                    <FontAwesome onClick={this.toggleDropdown} name="fa fa-bell" className={this.bellClass}/>
+                    <FontAwesome onClick={this.toggleDropdown} name="fa fa-bell" className={bellClasses}/>
                     {this.state.visible ? <BellComponent newNotifications={this.props.newNotifications}/> : null}
                 </div>
                 <div className="main-content">
