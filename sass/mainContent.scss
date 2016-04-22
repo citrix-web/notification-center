@@ -7,6 +7,19 @@
     margin-top: 4*$r;
     margin-bottom: 2*$r;
     color: darken($color-blue, 10%);
+
+    &.gotomeeting {
+      color: darken($gotomeeting-color, 10%);
+    }
+    &.gotoassist {
+      color: darken($gotoassist-color, 10%);
+    }
+    &.gototraining {
+      color: darken($gototraining-color, 10%);
+    }
+    &.gotowebinar {
+      color: darken($gotowebinar-color, 10%);
+    }
   }
   .card {
     border: 1px solid darken($color-white, 10%);

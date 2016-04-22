@@ -60,7 +60,7 @@ export default class NotificationCenter extends Component {
 
         return (
             <div className="notification-center">
-                <div className="topbar">
+                <div className="topbar gotoassist">
                     <img className="logotype" src="../images/logotype.svg" />
                     {!this.state.visible && this.props.newNotifications.length ?
                     <div className="bell-label new-message">{this.props.newNotifications.length}</div> :
@@ -70,7 +70,7 @@ export default class NotificationCenter extends Component {
                     oldNotifications={this.props.oldNotifications} read={this.props.read}/> : null}
                 </div>
                 <div className="main-content">
-                  <h1>My meetings</h1>
+                  <h1 className="gotoassist">My meetings</h1>
                   <div className="card"></div>
                   <div className="card"></div>
                   <div className="card"></div>

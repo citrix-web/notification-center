@@ -7,4 +7,44 @@
     margin-top: 1.5*$r;
     margin-left: 1.33*$r;
   }
+
+  &.gotomeeting {
+    background: linear-gradient($gotomeeting-color, darken($gotomeeting-color, 5%));
+    border-bottom: 1px solid darken($gotomeeting-color, 15%);
+
+    .bell {
+      background: linear-gradient(darken($gotomeeting-color, 25%), darken($gotomeeting-color, 20%));
+      box-shadow: 0px 1px lighten($gotomeeting-color, 7%);
+    }
+  }
+
+  &.gotoassist {
+    background: linear-gradient($gotoassist-color, darken($gotoassist-color, 5%));
+    border-bottom: 1px solid darken($gotoassist-color, 15%);
+
+    .bell {
+      background: linear-gradient(darken($gotoassist-color, 25%), darken($gotoassist-color, 20%));
+      box-shadow: 0px 1px lighten($gotoassist-color, 7%);
+    }
+  }
+
+  &.gotowebinar {
+    background: linear-gradient($gotowebinar-color, darken($gotowebinar-color, 5%));
+    border-bottom: 1px solid darken($gotowebinar-color, 15%);
+
+    .bell {
+      background: linear-gradient(darken($gotowebinar-color, 25%), darken($gotowebinar-color, 20%));
+      box-shadow: 0px 1px lighten($gotowebinar-color, 7%);
+    }
+  }
+
+  &.gototraining {
+    background: linear-gradient($gototraining-color, darken($gototraining-color, 5%));
+    border-bottom: 1px solid darken($gototraining-color, 15%);
+
+    .bell {
+      background: linear-gradient(darken($gototraining-color, 25%), darken($gototraining-color, 20%));
+      box-shadow: 0px 1px lighten($gototraining-color, 7%);
+    }
+  }
 }
