@@ -9,7 +9,7 @@ export default class BellComponent extends Component {
   render() {
     return (
       <div>
-        <NotificationContainer newNotifications={this.props.newNotifications}/>
+        <NotificationContainer newNotifications={this.props.newNotifications} oldNotifications={this.props.oldNotifications} read={this.props.read}/>
       </div>
     );
   }

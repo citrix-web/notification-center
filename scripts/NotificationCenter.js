@@ -21,9 +21,9 @@ export default class NotificationCenter extends Component {
         this.setState({
             visible: !this.state.visible
         });
-
         if (this.state.visible) {
             this.bellClass = "bell";
+            this.props.read();
         } else {
             this.bellClass = "bell selected";
         }
@@ -66,7 +66,8 @@ export default class NotificationCenter extends Component {
                     <div className="bell-label new-message">{this.props.newNotifications.length}</div> :
                     null}
                     <FontAwesome onClick={this.toggleDropdown} name="fa fa-bell" className={bellClasses}/>
-                    {this.state.visible ? <BellComponent newNotifications={this.props.newNotifications}/> : null}
+                    {this.state.visible ? <BellComponent newNotifications={this.props.newNotifications}
+                    oldNotifications={this.props.oldNotifications} read={this.props.read}/> : null}
                 </div>
                 <div className="main-content">
                   <h1>My meetings</h1>

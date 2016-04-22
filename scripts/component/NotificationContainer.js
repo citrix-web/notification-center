@@ -13,7 +13,7 @@ export default class NotificationContainer extends Component {
     return (
       <div className="notification-dropdown">
         <div className="arrow-up"></div>
-        <MessageListContainer newNotifications={this.props.newNotifications}/>
+        <MessageListContainer newNotifications={this.props.newNotifications} oldNotifications={this.props.oldNotifications} read={this.props.read}/>
         <MessageListFooter />
       </div>
     );
